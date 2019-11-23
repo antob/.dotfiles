@@ -180,7 +180,7 @@ preexec_functions+=echo_blank
 #source "$ZSH_CUSTOM/themes/gruvbox-dark.zsh-theme"
 
 # Kitty completion
-#source <(kitty + complete setup zsh)
+source <(kitty + complete setup zsh)
 
 # Direnv
 eval "$(direnv hook zsh)"
