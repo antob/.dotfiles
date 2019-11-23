@@ -66,6 +66,7 @@ export SYSTEMD_LESS="$LESS"
 
 # gpg (for Github)
 export GPG_TTY=$(tty)
+gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # qt theme
 export QT_QPA_PLATFORMTHEME="qt5ct"

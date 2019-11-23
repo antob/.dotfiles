@@ -41,6 +41,9 @@ else
     notifier_cmd="awesome-client \"n=require('naughty');n.notify{title='Lock',text='Locking screen in 20 seconds.',timeout=18,preset=n.config.presets.critical}\""
 fi
 
+# set keyboard repeat rate
+xset r rate 350 40
+
 # xset s off &
 xautolock -detectsleep \
     -time 9 -notify 20 \
