@@ -3,7 +3,10 @@
 #############
 
 # manage dotfiles
-alias dotfiles="/usr/bin/env git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+function dotfiles() {
+  /usr/bin/env git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+}
+
 compdef dotfiles=git
 
 # go to parent
