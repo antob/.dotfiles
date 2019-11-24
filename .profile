@@ -20,14 +20,14 @@
 export PATH="$HOME/.bin:$PATH"
 
 # terminal emulator
-#export TERMINAL='kitty'
+export TERMINAL='kitty'
 
 # editor
 export VISUAL='vim'
 export EDITOR='vim'
 
 # ripgrep
-#export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/ripgreprc"
 
 # makeflags
 export MAKEFLAGS="-j$(nproc)"

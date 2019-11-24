@@ -44,7 +44,7 @@ fi
 # set keyboard repeat rate
 xset r rate 350 40
 
-# xset s off &
+xset s off &
 xautolock -detectsleep \
     -time 9 -notify 20 \
     -corners 000- \
@@ -63,7 +63,7 @@ case "$session" in
     termite|term)
         exec termite --geometry='1920x1080' ;;
     kitty)
-	exec kitty -o initial_window_width=1680 -o initial_window_height=1050 -o remember_window_size=no ;;
+	    exec kitty -o initial_window_width=1680 -o initial_window_height=1050 -o remember_window_size=no ;;
     alacritty)
         exec alacritty --dimensions 213 56 ;;
     i3|i3wm)
@@ -71,4 +71,3 @@ case "$session" in
     *)
         exec "$session"
 esac
-

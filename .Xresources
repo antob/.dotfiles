@@ -1,3 +1,6 @@
+! Xterm font
+XTerm.vt100.faceName: Hack
+
 ! hard contrast: *background: #1d2021
 *background: #282828
 ! soft contrast: *background: #32302f
