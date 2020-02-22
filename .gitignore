@@ -17,6 +17,8 @@
 *.pem
 *.key
 .pki/
+.password-store
+.lyxauth
 
 # Common caches
 .adobe/
@@ -50,7 +52,7 @@
 .wine/
 .Xauthority
 .xsession-errors
-.zcompdump-*
+.zcompdump*
 
 # Misc junk files
 *~
@@ -66,4 +68,5 @@
 
 # Other
 .oh-my-zsh
+.local/share
 
