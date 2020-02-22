@@ -5,9 +5,10 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
+# set dpi
+xrandr --dpi 192
 
 # merge in defaults and keymaps
-
 if [ -f "$sysresources" ]; then
     xrdb -merge "$sysresources"
 fi
@@ -31,43 +32,33 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
     unset f
 fi
 
-# select wm/de with: startx ~/.xinitrc session
-session=${1:-awesome}
-
-# AwesomeWM handles this in rc.lua
-if [ "$session" != 'awesome' ]; then
-    notifier_cmd="notify-send -t 18000 -u critical 'Lock' 'Locking screen in 20 seconds.'"
-else
-    notifier_cmd="awesome-client \"n=require('naughty');n.notify{title='Lock',text='Locking screen in 20 seconds.',timeout=18,preset=n.config.presets.critical}\""
+if [ -f ~/.xprofile ]; then
+    . ~/.xprofile
 fi
+
+# select wm/de with: startx ~/.xinitrc session
+session=${1:-i3}
 
 # set keyboard repeat rate
 xset r rate 350 40
 
-xset s off &
-xautolock -detectsleep \
-    -time 9 -notify 20 \
-    -corners 000- \
-    -notifier "$notifier_cmd" \
-    -locker /usr/local/bin/lock &
+# set dpi
+#xrandr --dpi 192
 
-#dropbox &
-#redshift -c .config/redshift.conf &
-#compton --config .config/compton/compton.conf &
+# screen locker
+xset s 300 30
+xss-lock -n ~/.local/bin/dim-screen-fix.sh -l -- betterlockscreen --off 30 -l dimblur -t "Enter password to unlock." &
+
+# redshift
+redshift -c .config/redshift/redshift.conf &
 
 case "$session" in
     awesome)
         exec awesome ;;
-    awesome-git)
-        exec "$HOME"/build/awesome/install.d/bin/awesome ;;
-    termite|term)
-        exec termite --geometry='1920x1080' ;;
-    kitty)
-	    exec kitty -o initial_window_width=1680 -o initial_window_height=1050 -o remember_window_size=no ;;
-    alacritty)
-        exec alacritty --dimensions 213 56 ;;
-    i3|i3wm)
+    i3)
         exec i3 ;;
+    kitty)
+	exec kitty -o initial_window_width=1680 -o initial_window_height=1050 -o remember_window_size=no ;;
     *)
         exec "$session"
 esac

@@ -8,6 +8,10 @@ function dotfiles() {
 }
 
 compdef dotfiles=git
+compdef pass=gopass
+
+# make aliases work with sudo
+alias sudo='sudo '
 
 # go to parent
 alias ..='cd ..'
@@ -55,10 +59,24 @@ alias neofetch='echo "\\n\\n" && neofetch'
 alias grep='grep --color=auto --exclude-dir={.git,.svn,.hg}'
 alias egrep='egrep --color=auto --exclude-dir={.git,.svn,.hg}'
 alias diff='diff --color=auto'
-alias journalctl='journalctl -r'
 alias gdb='gdb -q'
+
+# git aliases
 alias gst='git status'
 alias gh='git hist'
+alias gb='git branch'
+alias gc='git commit --verbose'
+alias gf='git fetch'
+alias gfc='git clone'
+alias gfm='git pull'
+alias gg='git grep'
+alias ggi='git grep --ignore-case'
+alias gia='git add'
+alias gid='git diff --no-ext-diff --cached'
+alias gl='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
+alias gls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
+alias gm='git merge'
+alias gp='git push'
 
 # tty aliases
 if [[ "$TERM" == 'linux' ]]; then
@@ -204,13 +222,6 @@ bindkey '^H' backward-kill-word
 
 # ctrl+shift+delete
 bindkey "\e[3;6~" kill-line
-
-
-#########
-#  FZF  #
-#########
-
-alias fzf="fzf-tmux -d 30% --"
 
 
 #############

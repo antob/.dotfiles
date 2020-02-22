@@ -8,6 +8,7 @@
 /Templates/
 /Videos/
 /Projects/
+/build/
 
 # Security
 .gnupg/
@@ -15,6 +16,7 @@
 .ssh/
 *.pem
 *.key
+.pki/
 
 # Common caches
 .adobe/
@@ -48,6 +50,7 @@
 .wine/
 .Xauthority
 .xsession-errors
+.zcompdump-*
 
 # Misc junk files
 *~
@@ -60,3 +63,7 @@
 
 # Automatically appended
 .dotfiles
+
+# Other
+.oh-my-zsh
+

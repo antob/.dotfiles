@@ -12,7 +12,7 @@ export ZSH="$HOME/.oh-my-zsh"
 export ZSH_CUSTOM="$ZSH_CONFIG/custom"
 
 if [[ "$TERM" != 'linux' ]]; then
-    ZSH_THEME='gruvbox-dark'
+    ZSH_THEME='powerlevel10k/powerlevel10k'
 fi
 
 #CASE_SENSITIVE="true"
@@ -33,15 +33,6 @@ UPDATE_ZSH_DAYS=7
 
 [[ -f "$HOME/.zprofile" ]] \
     && source "$HOME/.zprofile"
-
-
-###############
-#  DIRCOLORS  #
-###############
-
-# eval dircolors
-[[ -f "$HOME/.dircolors" ]] \
-    && eval "$(dircolors "$HOME/.dircolors")"
 
 
 #####################
@@ -66,6 +57,8 @@ plugins=(
     zsh-autosuggestions
     command-not-found
     bgnotify
+    docker
+    docker-compose
 )
 
 # # Native plugins
@@ -96,18 +89,11 @@ plugins=(
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#     export EDITOR='vim'
-# else
-#     export EDITOR='mvim'
-# fi
+export LC_ALL=en_US.UTF-8                                                                                  
+export LANG=en_US.UTF-8
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="$HOME/.ssh/rsa_id"
@@ -116,6 +102,10 @@ plugins=(
 ############
 #  CUSTOM  #
 ############
+
+# Customize p10k theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f "$ZSH_CONFIG/p10k.zsh" ]] || source "$ZSH_CONFIG/p10k.zsh"
 
 # Zsh options
 setopt COMPLETE_ALIASES
@@ -139,24 +129,14 @@ stty -ixon
 [[ -f "$ZSH_CONFIG/fzf.zsh" ]] \
     && source "$ZSH_CONFIG/fzf.zsh"
 
-# Vim mode
-#[[ -f "$ZSH_CONFIG/vim.zsh" ]] \
-#    && source "$ZSH_CONFIG/vim.zsh"
-
-# Gruvbox colors fix
-[[ -f "$HOME/.bin/fix-gruvbox-palette" ]] \
-    && [[ "$TERM" != 'xterm-kitty' ]] \
-    && [[ "$TERM" != 'tmux-256color' ]] \
-    && source "$HOME/.bin/fix-gruvbox-palette"
-
 # TMUX
-local main_attached="$(tmux list-sessions -F '#S #{session_attached}' \
-    2>/dev/null \
-    | sed -n 's/^main[[:space:]]//p')"
-if [[ "$main_attached" -le '0' ]] && [[ "$TERM" != 'linux' ]]; then
-    tmux new -A -s main -t main >/dev/null 2>&1
-    exit
-fi
+#local main_attached="$(tmux list-sessions -F '#S #{session_attached}' \
+#    2>/dev/null \
+#    | sed -n 's/^main[[:space:]]//p')"
+#if [[ "$main_attached" -le '0' ]] && [[ "$TERM" != 'linux' ]]; then
+#    tmux new -A -s main -t main >/dev/null 2>&1
+#    exit
+#fi
 
 # Alternative prompt
 if [[ "$TERM" == "linux" ]] || [[ ! -d "$ZSH_CONFIG" ]]; then
@@ -169,15 +149,15 @@ if [[ "$TERM" == "linux" ]] || [[ ! -d "$ZSH_CONFIG" ]]; then
     ZSH_THEME_GIT_PROMPT_CLEAN=""
 fi
 
+# Autojump
+source /etc/profile.d/autojump.zsh
+
 # Empty line
 function echo_blank() {
     echo
 }
 precmd_functions+=echo_blank
 preexec_functions+=echo_blank
-
-# Directly source prompt
-#source "$ZSH_CUSTOM/themes/gruvbox-dark.zsh-theme"
 
 # Kitty completion
 source <(kitty + complete setup zsh)
@@ -189,3 +169,4 @@ eval "$(direnv hook zsh)"
 
 # Debug
 #zprof
+

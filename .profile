@@ -17,7 +17,7 @@
 #export PYTHONSTARTUP="$HOME/.pythonrc.py"
 
 # user scripts
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # terminal emulator
 export TERMINAL='kitty'
@@ -64,9 +64,18 @@ export SYSTEMD_LESS="$LESS"
 # export MANWIDTH=$(tput cols)
 # [ "$MANWIDTH" -gt "$MAN_MAX_WIDTH" ] && export MANWIDTH=$MAN_MAX_WIDTH
 
-# gpg (for Github)
+# Configure pinentry to use the correct TTY
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # qt theme
 export QT_QPA_PLATFORMTHEME="qt5ct"
+
+# GTK 3 theme
+export GTK_THEME=Adwaita:dark
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
+
+# firefox scroling
+export MOZ_USE_XINPUT2=1
+
