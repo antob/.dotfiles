@@ -45,6 +45,10 @@ frame network {
     cache_timeout = 5
   }
 
+  bluetooth {
+    format = "[ {format_device}]"
+  }
+
   whatismyip {
     mode = "status"
     button_refresh = 3
