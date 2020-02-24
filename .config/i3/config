@@ -20,6 +20,7 @@ gaps inner 20
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id "killall compton; compton -b --respect-prop-shadow --config ~/.config/compton/compton.conf"
 exec_always --no-startup-id "killall dunst; dunst"
+exec_always --no-startup-id "i3-battery-popup -L 5 -l 2"
 
 bar {
   font pango:HackNerdFont 12

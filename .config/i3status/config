@@ -93,8 +93,8 @@ tztime local {
 
 sysdata {
   cpus = ['cpu']
-  format = "{format_cpu}  [\?color=mem_used_percent {mem_used:.1f}/{mem_total:.1f} {mem_total_unit}]"
-  format_cpu = " [\?color=used_percent {used_percent:.0f}%]"
+  format = "{format_cpu} [\?color=mem_used_percent  {mem_used:.1f}/{mem_total:.1f} {mem_total_unit}]"
+  format_cpu = "[\?color=used_percent  {used_percent:.0f}%]"
 }
 
 volume master {

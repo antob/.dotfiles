@@ -1,16 +1,16 @@
 configuration {
-/*	modi: "window,run,ssh";*/
+	modi: "window,run";
 	width: 40;
 /*	lines: 15;*/
 /*	columns: 1;*/
-	font: "HackNerdFont 14";
+	font: "SF Pro Display 16";
 /*	bw: 1;*/
 /*	location: 0;*/
-	padding: 80;
+	padding: 5;
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
-/*	show-icons: false;*/
+	show-icons: true;
 /*	terminal: "rofi-sensible-terminal";*/
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
@@ -38,11 +38,11 @@ configuration {
 /*	matching: "normal";*/
 /*	tokenize: true;*/
 /*	m: "-5";*/
-/*	line-margin: 2;*/
-	line-padding: 5;
+	line-margin: 0;
+	line-padding: 15;
 /*	filter: ;*/
 	separator-style: "solid";
-	hide-scrollbar: true;
+	hide-scrollbar: false;
 /*	fullscreen: false;*/
 /*	fake-transparency: false;*/
 	dpi: 196;
@@ -53,10 +53,9 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-	theme: "~/.cache/wal/colors-rofi-dark.rasi";
-	color-normal: "argb:00282828, #ebdbd2, argb:00282828, argb:00282828, #458588";
+	color-normal: "argb:00222222, #808080, argb:00222222, argb:a0222222, #b8b8b8";
 /*	color-urgent: "#2f343f, #ebcb8b, #2f343f, #2f343f, #ebcb8b";*/
-/*	color-active: "#2f343f, #b48ead, #2f343f, #2f343f, #93e5cc";*/
+	color-active: "#2f343f, #808080, #2f343f, #2f343f, #f0f0f0";
 	color-window: "argb:cc282828, argb:cc1d2021, argb:cc282828";
 /*	max-history-size: 25;*/
 /*	combi-hide-mode-prefix: false;*/
@@ -143,3 +142,5 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+
+/* vim:ft=css

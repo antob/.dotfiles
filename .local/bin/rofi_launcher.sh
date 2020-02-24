@@ -53,12 +53,12 @@ while getopts ":hvqwcbrl" opt; do
             surfraw -browser="$BROWSER" $(sr -elvi | awk -F'-' '{print $1}' \
                 | sed '/:/d' | awk '{$1=$1};1' | rofi -hide-scrollbar \
                 -kb-row-select 'Tab' -kb-row-tab 'Control+space' \
-                -dmenu -mesg 'Tab for Autocomplete' -i -p 'Web Search: ' \
+                -dmenu -mesg 'Tab for Autocomplete' -i -p 'Web Search' \
                 -padding 50 -line-padding 4)
             ;;
         l)
             ANS=$(echo " Lock| Logout| Reboot| Shutdown" | \
-                rofi -sep "|" -dmenu -i -p 'System: ' "" -width 20 \
+                rofi -sep "|" -dmenu -i -p 'System' "" -width 20 \
                 -hide-scrollbar -eh 1 -line-padding 4 -padding 20 -lines 4)
             case "$ANS" in
                 *Lock) loginctl lock-session ;;
