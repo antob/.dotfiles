@@ -11,7 +11,7 @@
 /build/
 
 # Security
-.gnupg/
+.gnupg/*
 !.gnupg/*.conf
 .ssh/
 *.pem
@@ -68,5 +68,6 @@
 
 # Other
 .oh-my-zsh
-.local/share
+.local/*
+!.local/bin
 
