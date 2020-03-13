@@ -63,7 +63,7 @@ while getopts ":hvqwcbrl" opt; do
             case "$ANS" in
                 *Lock) loginctl lock-session ;;
                 *Logout) i3-msg exit ;;
-                *Reboot) systemctl reboot ;;
+                *Reboot) sudo systemctl reboot ;;
                 *Shutdown) systemctl -i poweroff
             esac
             ;;

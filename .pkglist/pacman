@@ -46,6 +46,7 @@ groff
 gucharmap
 hplip
 htop
+hwdetect
 i3-gaps
 i3lock-color
 i3status
@@ -83,6 +84,7 @@ patch
 pavucontrol
 pcsc-tools
 pkgconf
+pkgstats
 playerctl
 powertop
 pulseaudio-alsa
@@ -104,7 +106,6 @@ syncthing
 terminus-font
 texinfo
 the_silver_searcher
-throttled
 tlp
 tlp-rdw
 tmux
