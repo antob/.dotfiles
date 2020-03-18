@@ -15,11 +15,12 @@ general {
 }
 
 order += "yubikey"
-order += "disk /"
+#order += "disk /"
 order += "frame network"
 order += "frame battery"
-order += "sysdata"
-order += "volume master"
+#order += "sysdata"
+order += "frame system"
+order += "frame sound_light"
 order += "arch_updates"
 order += "tztime local"
 
@@ -27,12 +28,12 @@ frame network {
   format_separator = ' '
 
   wifi {
-    device = "wlp82s0"
+    device = "wifi0"
     format = " {ssid}|"
     on_click 1 = "exec nm-connection-editor"
   }
 
-  ethernet enp0s31f6 {
+  ethernet net0 {
     # if you use %speed, i3status requires root privileges
     format_up = " %ip"
     format_down = ""
@@ -46,7 +47,8 @@ frame network {
   }
 
   bluetooth {
-    format = "[ {format_device}]"
+    #format = "[ {format_device}]"
+    format = ""
   }
 
   whatismyip {
@@ -80,35 +82,48 @@ frame battery {
   }
 }
 
-#bluetooth {
-#  format_prefix = " "
-#  format_no_conn_prefix = " "
-#  format_no_conn = "BT"
-#}
-
-
 tztime local {
   format = " %Y-%m-%d   %H:%M "
 }
 
-sysdata {
-  cpus = ['cpu']
-  format = "{format_cpu} [\?color=mem_used_percent  {mem_used:.1f}/{mem_total:.1f} {mem_total_unit}]"
-  format_cpu = "[\?color=used_percent  {used_percent:.0f}%]"
+frame system {
+  format_separator = ' '
+
+  diskdata {
+    disk = "mapper/cryptsystem"
+    format = "[\?color=used_percent  {used_percent}%]"
+    format_space = "{value:.0f}"
+  }
+
+  sysdata {
+    cpus = ['cpu']
+    #format = "{format_cpu} [\?color=mem_used_percent  {mem_used:.1f}/{mem_total:.1f} {mem_total_unit}]"
+    format = "{format_cpu} [\?color=mem_used_percent  {mem_used_percent:.0f}%]"
+    format_cpu = "[\?color=used_percent  {used_percent:.0f}%]"
+  }
 }
 
-volume master {
-  format = " %volume"
-  format_muted = " (muted) %volume"
-  device = "default"
-  mixer = "Master"
-  mixer_idx = 0
-  on_click 1 = "exec pavucontrol"
+frame sound_light {
+  format_separator = ' '
+
+  backlight {
+    format = " {level}%"
+    cache_timeout = 1
+  }
+
+  volume master {
+    format = " %volume"
+    format_muted = " (muted) %volume"
+    device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+    on_click 1 = "exec pavucontrol"
+  }
 }
 
-disk "/" {
-  format = " %avail"
-}
+#disk "/" {
+#  format = " %avail"
+#}
 
 yubikey {
   format = "[  [\?if=is_gpg ][\?if=is_u2f ]]"

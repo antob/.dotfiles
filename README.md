@@ -111,6 +111,44 @@ chsh -s /usr/bin/zsh
 
 Reboot!
 
+### Migrate misc settings
+
+List all files not owned by any package
+```
+# pacreport --unowned-files
+```
+
+List changed pacman backup files
+```
+# pacman -Qii | awk '/^MODIFIED/ {print $2}'
+```
+
+List running services
+```
+$ systemctl
+```
+
+Show system status
+```
+$ systemctl status
+```
+
+List of locations to check for config files:
+
+- /etc/udev/rules.d
+- /etc/acpi/events
+- /etc/modules-load.d
+- /etc/modprobe.d
+- /etc/efi-keys
+- /etc/environment
+- /etc/fstab
+- /etc/pacman.conf
+- /etc/pacman.d/hooks
+- /etc/tmpfiles.d
+- /etc/X11/xorg.conf
+- /etc/X11/xorg.conf.d
+
+
 ## dotfiles Commands
 
 ```bash

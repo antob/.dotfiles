@@ -3,7 +3,7 @@ configuration {
 	width: 40;
 /*	lines: 15;*/
 /*	columns: 1;*/
-	font: "SF Pro Display 16";
+	font: "SF Pro Display 20";
 /*	bw: 1;*/
 /*	location: 0;*/
 	padding: 5;
@@ -45,7 +45,7 @@ configuration {
 	hide-scrollbar: false;
 /*	fullscreen: false;*/
 /*	fake-transparency: false;*/
-	dpi: 196;
+/*	dpi: 196;*/
 /*	threads: 0;*/
 /*	scrollbar-width: 8;*/
 /*	scroll-method: 0;*/

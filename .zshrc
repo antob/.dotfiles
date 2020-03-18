@@ -165,6 +165,13 @@ source <(kitty + complete setup zsh)
 # Direnv
 eval "$(direnv hook zsh)"
 
+# Rbenv
+eval "$(rbenv init -)"
+
+# Nvm
+export NVM_DIR="$HOME/.config/nvm"
+source /usr/share/nvm/init-nvm.sh
+
 ##########################################################################################
 
 # Debug

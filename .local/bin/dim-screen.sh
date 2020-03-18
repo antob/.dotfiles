@@ -6,12 +6,12 @@
 ## CONFIGURATION ##############################################################
 
 # Brightness will be lowered to this value.
-min_brightness=1
+min_brightness=300
 
 # If your video driver works with xbacklight, set -time and -steps for fading
 # to $min_brightness here. Setting steps to 1 disables fading.
 fade_time=200
-fade_steps=20
+fade_steps=1
 
 # If you have a driver without RandR backlight property (e.g. radeon), set this
 # to use the sysfs interface and create a .conf file in /etc/tmpfiles.d/
@@ -24,13 +24,13 @@ fade_steps=20
 
 # Time to sleep (in seconds) between increments when using sysfs. If unset or
 # empty, fading is disabled.
-fade_step_time=0.05
+fade_step_time=
 
 ###############################################################################
 
 get_brightness() {
     if [[ -z $sysfs_path ]]; then
-        xbacklight -get
+        brightnessctl get
     else
         cat $sysfs_path
     fi
@@ -38,7 +38,7 @@ get_brightness() {
 
 set_brightness() {
     if [[ -z $sysfs_path ]]; then
-        xbacklight -steps 1 -set $1
+        brightnessctl -q set $1
     else
         echo $1 > $sysfs_path
     fi
@@ -46,9 +46,9 @@ set_brightness() {
 
 fade_brightness() {
     if [[ -z $sysfs_path ]]; then
-        xbacklight -time $fade_time -steps $fade_steps -set $1
+        brightnessctl -q set $1
     elif [[ -z $fade_step_time ]]; then
-        set_brightness $1
+        brightnessctl -q set $1
     else
         local level
         for level in $(eval echo {$(get_brightness)..$1}); do

@@ -6,7 +6,7 @@ sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
 # set dpi
-xrandr --dpi 192
+xrandr --dpi 128
 
 # merge in defaults and keymaps
 if [ -f "$sysresources" ]; then
@@ -40,21 +40,19 @@ fi
 session=${1:-i3}
 
 # set keyboard repeat rate
-xset r rate 350 40
+xset r rate 200 40
 
 # set dpi
 #xrandr --dpi 192
 
 # screen locker
 xset s 300 30
-xss-lock -n ~/.local/bin/dim-screen-fix.sh -l -- betterlockscreen --off 30 -l dimblur -t "Enter password to unlock." &
+xss-lock -n ~/.local/bin/dim-screen.sh -l -- betterlockscreen --off 30 -l dimblur -t "Enter password to unlock." &
 
 # redshift
 redshift -c .config/redshift/redshift.conf &
 
 case "$session" in
-    awesome)
-        exec awesome ;;
     i3)
         exec i3 ;;
     kitty)
