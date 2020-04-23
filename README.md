@@ -147,6 +147,7 @@ List of locations to check for config files:
 - /etc/tmpfiles.d
 - /etc/X11/xorg.conf
 - /etc/X11/xorg.conf.d
+- /etc/makepkg.conf
 
 
 ## dotfiles Commands
