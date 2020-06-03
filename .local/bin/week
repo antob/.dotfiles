@@ -1,0 +1,17 @@
+#!/bin/bash
+# Usage: week [DATE]
+#
+# Returns week number for given date.
+# If no date is given, returns week
+# number for todays date.
+
+set -e
+
+if [ $# -eq 0 ]; then
+  weeknumber=`date +%V`
+else
+  weeknumber=`date --date=$1 +"%V"`
+fi
+
+echo $weeknumber
+

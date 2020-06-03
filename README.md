@@ -148,7 +148,17 @@ List of locations to check for config files:
 - /etc/X11/xorg.conf
 - /etc/X11/xorg.conf.d
 - /etc/makepkg.conf
-
+- /etc/nsswitch.conf
+- ~/.mozilla (user.js)
+- /etc/systemd/system/disable-usb-wakeup.service
+- /etc/sysctl.d/disable_watchdog.conf
+- /etc/sysctl.d/dirty.conf
+- /etc/sysctl.d/laptop.conf
+- /etc/sysctl.d/99-swappiness.conf
+- /etc/systemd/sleep.conf
+- /usr/share/polkit-1/rules.d/50-net.reactivated.fprint.device.enroll.rules
+- /etc/pam.d/system-local-login
+- /etc/pam.d/i3lock
 
 ## dotfiles Commands
 

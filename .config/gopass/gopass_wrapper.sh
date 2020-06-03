@@ -7,8 +7,9 @@ else
 	eval $(gpg-agent --daemon)
 fi
 
-#export GPG_TTY="$(tty)"
+export PATH="$PATH:/usr/local/bin" # required on MacOS/brew
+export GPG_TTY="$(tty)"
 
-/sbin/gopass jsonapi listen
+/usr/bin/gopass jsonapi listen
 
 exit $?

@@ -36,6 +36,9 @@ if [ -f ~/.xprofile ]; then
     . ~/.xprofile
 fi
 
+# set color profile
+xcalib -d :0 ~/.local/share/color/NE140FHM_N61.icm
+
 # select wm/de with: startx ~/.xinitrc session
 session=${1:-i3}
 
@@ -46,8 +49,10 @@ xset r rate 200 40
 #xrandr --dpi 192
 
 # screen locker
-xset s 300 30
-xss-lock -n ~/.local/bin/dim-screen.sh -l -- betterlockscreen --off 30 -l dimblur -t "Enter password to unlock." &
+xset s off
+#xset s 300 120
+#xss-lock -n ~/.local/bin/dim-lights.sh -l -- ~/.local/bin/betterlockscreen -t 'Enter password to unlock.' -s &
+#xss-lock -n ~/.local/bin/dim-lights.sh -l -- ~/.local/bin/betterlockscreen --off 30 -l dimblur -t 'Enter password to unlock.' &
 
 # redshift
 redshift -c .config/redshift/redshift.conf &

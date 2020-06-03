@@ -90,7 +90,7 @@ frame system {
   format_separator = ' '
 
   diskdata {
-    disk = "mapper/cryptsystem"
+    disk = "mapper/system"
     format = "[\?color=used_percent  {used_percent}%]"
     format_space = "{value:.0f}"
   }

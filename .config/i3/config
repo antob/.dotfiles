@@ -18,7 +18,7 @@ gaps inner 20
 
 # autostart
 exec --no-startup-id ~/.fehbg
-exec_always --no-startup-id "killall compton; compton -b --respect-prop-shadow --config ~/.config/compton/compton.conf"
+#exec_always --no-startup-id "killall compton; compton -b --respect-prop-shadow --config ~/.config/compton/compton.conf"
 exec_always --no-startup-id "killall dunst; dunst"
 exec --no-startup-id "i3-battery-popup -L 5 -l 2 -t 1m"
 exec --no-startup-id "blueman-applet"
@@ -27,7 +27,7 @@ exec --no-startup-id "nm-applet"
 bar {
   font pango:HackNerdFont 12
   position top
-  height 48
+  height 42
   tray_padding 10
   tray_output DP1
   tray_output primary
@@ -36,13 +36,13 @@ bar {
   status_command py3status
 
   colors {
-    background #00000040
+    background #00000080
     statusline #ebdbb2c0
 
     separator #444444
 
-    focused_workspace  #282828 #282828 #ebdbb2
-    active_workspace   #333333 #5f676a #ebdbb2
+    active_workspace   #282828 #282828 #ebdbb2
+    focused_workspace  #333333 #444444 #ebdbb2
     inactive_workspace #333333 #222222 #888888
     urgent_workspace   #2f343a #900000 #ebdbb2
     binding_mode       #2f343a #900000 #ebdbb2
@@ -73,8 +73,11 @@ bindsym $mod+Return exec kitty
 # start firefox
 bindsym $mod+Shift+f exec "firefox-developer-edition"
 
-# start visual studio code
-bindsym $mod+c exec code
+# start calc
+bindsym $mod+c exec --no-startup-id LC_NUMERIC=sv_SE.UTF-8 LC_MONETARY=sv_SE.UTF-8 LC_ALL= rofi -show calc -modi calc -no-show-match -no-sort -no-bold -terse -calc-command "echo -n '{result}' | xclip -selection clipboard"
+
+# show clipboard history
+#bindsym $mod+Shift+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # start spotify
 #bindsym $mod+m exec spotify
@@ -83,7 +86,7 @@ bindsym $mod+c exec code
 #bindsym $mod+Shift+a exec qtfm
 
 # start gopass with rofi
-bindsym $mod+p exec --no-startup-id gopass ls --flat | rofi -dmenu -p gopass | xargs --no-run-if-empty gopass show -c
+bindsym $mod+p exec --no-startup-id gopass ls --flat | rofi -dmenu -p gopass | xargs --no-run-if-empty gopass show --alsoclip
 
 # start rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun
@@ -96,6 +99,9 @@ bindsym $mod+Shift+q kill
 
 # screenshot
 #bindsym $mod+Shift+p exec maim -u ~/$(date +%s).png
+
+# toggle gaps
+bindsym $mod+g exec --no-startup-id toggle-gaps toggle
 
 # change focus
 bindsym $mod+j focus left
@@ -189,14 +195,23 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 # move workspace to next output
-bindsym $mod+m move workspace to output right
+bindsym $mod+m move workspace to output up
+
+# cycle fullscreen windows in stacked layout
+bindsym $mod+section fullscreen toggle; focus right; fullscreen toggle
+
+# open client 1 layout in ws 6
+bindsym $mod+ctrl+6 workspace 6; exec toggle-gaps off; exec kitty --session=.config/kitty/layouts/obit.conf
+
+# open client 2 layout in ws 7
+bindsym $mod+ctrl+7 workspace 7; exec toggle-gaps off; exec kitty --session=.config/kitty/layouts/hl.conf                                                                   
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+e reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # lock screen
 bindsym ctrl+$mod+l exec loginctl lock-session
 
@@ -252,21 +267,21 @@ set $inactive-text-color #928374
 set $urgent-bg-color     #fb4934
 
 # class                 border    backgr.     text                 indicator   child_border
-client.focused          #444444   #333333     $text-color          #2e9ef4     #285577
-#client.focused_inactive #333333   #5f676a     #ffffff              #484e50     #5f676a
+client.focused_inactive #444444   #333333     $text-color          #2e9ef4     #285577
+client.focused          #333333   #444444     $text-color          #2e9ef4     #285577
 client.unfocused        #333333   #222222     $inactive-text-color #292d2e     #222222
 #client.urgent           #2f343a   #900000     #ffffff              #900000     #900000
 #client.placeholder      #000000   #0c0c0c     #ffffff              #000000     #0c0c0c
 
 #client.background       #ffffff
 
-bindsym XF86MonBrightnessDown      exec brightnessctl -q s 10%-
-bindsym XF86MonBrightnessUp        exec brightnessctl -q s +10%
-bindsym XF86AudioMute              exec amixer set Master toggle
-bindsym XF86AudioLowerVolume       exec amixer -q set Master 4000- unmute
-bindsym XF86AudioRaiseVolume       exec amixer -q set Master 4000+ unmute
-bindsym $mod+XF86AudioLowerVolume  exec amixer -q set PCM 4000- unmute
-bindsym $mod+XF86AudioRaiseVolume  exec amixer -q set PCM 4000+ unmute
+bindsym XF86MonBrightnessDown      exec --no-startup-id brightnessctl -q s 5%-
+bindsym XF86MonBrightnessUp        exec --no-startup-id brightnessctl -q s +5%
+bindsym XF86AudioMute              exec --no-startup-id amixer set Master toggle
+bindsym XF86AudioLowerVolume       exec --no-startup-id amixer -q set Master 4000- unmute
+bindsym XF86AudioRaiseVolume       exec --no-startup-id amixer -q set Master 4000+ unmute
+bindsym $mod+XF86AudioLowerVolume  exec --no-startup-id amixer -q set PCM 4000- unmute
+bindsym $mod+XF86AudioRaiseVolume  exec --no-startup-id amixer -q set PCM 4000+ unmute
 
 # window rules, you can find the window class using xpropc
 #assign [class=URxvt] 1
@@ -275,7 +290,7 @@ bindsym $mod+XF86AudioRaiseVolume  exec amixer -q set PCM 4000+ unmute
 #assign [class=Geany|Evince|Gucharmap|Soffice|libreoffice*] 4
 #assign [class=Audacity|Vlc|mpv|Ghb|Xfburn|Gimp*|Inkscape] 5
 #assign [class=Lxappearance|System-config-printer.py|Lxtask|GParted|Pavucontrol|Exo-helper*|Lxrandr|Arandr] 6
-for_window [class=feh|Lxappearance|Lxtask|Pavucontrol|Nm-connection-editor|blueman-manager] floating enable
-for_window [class=Kitty|Firefox|Lxappearance|Nm-connection-editor|blueman-manager] focus
+for_window [class=feh|Lxappearance|Lxtask|Pavucontrol|Nm-connection-editor|blueman-manager|arandr] floating enable
+for_window [class=Kitty|Firefox|Lxappearance|Nm-connection-editor|blueman-manager|arandr] focus
 #for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 

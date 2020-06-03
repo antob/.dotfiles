@@ -57,6 +57,7 @@ plugins=(
     zsh-autosuggestions
     command-not-found
     bgnotify
+    git
     docker
     docker-compose
 )
@@ -108,7 +109,7 @@ export ARCHFLAGS="-arch x86_64"
 [[ ! -f "$ZSH_CONFIG/p10k.zsh" ]] || source "$ZSH_CONFIG/p10k.zsh"
 
 # Zsh options
-setopt COMPLETE_ALIASES
+#setopt COMPLETE_ALIASES
 setopt HIST_IGNORE_SPACE
 setopt NO_AUTO_CD
 setopt INTERACTIVE_COMMENTS
@@ -171,6 +172,17 @@ eval "$(rbenv init -)"
 # Nvm
 export NVM_DIR="$HOME/.config/nvm"
 source /usr/share/nvm/init-nvm.sh
+
+# Dotnet
+export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
+export DOTNET_ROOT=$HOME/dotnet/2.2.0
+export PATH=$PATH:$HOME/dotnet/2.2.0
+
+# Bat theme
+BAT_THEME="ansi-dark"
+
+# Default command to run, if any
+eval "$RUN"
 
 ##########################################################################################
 

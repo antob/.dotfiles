@@ -14,6 +14,7 @@
 .gnupg/*
 !.gnupg/*.conf
 .ssh/
+!.ssh/config
 *.pem
 *.key
 .pki/
@@ -68,6 +69,25 @@
 
 # Other
 .oh-my-zsh
-.local/*
-!.local/bin
+.local/share/xorg
+.aspnet
+.bundle
+.cmake
+.config/GIMP
+.config/Microsoft
+.config/Slack
+.config/google-chrome
+.config/vivaldi
+.config/spotify
+.nuget
+.rbenv
+.solargraph
+.viminfo
+.vscode
+.w3m
+.yarnrc
+.dotnet
+/go
+/tmp
+/dotnet
 

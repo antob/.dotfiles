@@ -53,7 +53,7 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-	color-normal: "argb:00222222, #808080, argb:00222222, argb:a0222222, #b8b8b8";
+	color-normal: "argb:00111111, #999999, argb:00222222, argb:80111111, #eeeeee";
 /*	color-urgent: "#2f343f, #ebcb8b, #2f343f, #2f343f, #ebcb8b";*/
 	color-active: "#2f343f, #808080, #2f343f, #2f343f, #f0f0f0";
 	color-window: "argb:cc282828, argb:cc1d2021, argb:cc282828";

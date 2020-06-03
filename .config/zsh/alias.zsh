@@ -60,23 +60,12 @@ alias grep='grep --color=auto --exclude-dir={.git,.svn,.hg}'
 alias egrep='egrep --color=auto --exclude-dir={.git,.svn,.hg}'
 alias diff='diff --color=auto'
 alias gdb='gdb -q'
+alias mv='imv --pass-through -i'
+alias cp='icp --pass-through -i'
+alias cat='bat -p'
 
 # git aliases
-alias gst='git status'
 alias gh='git hist'
-alias gb='git branch'
-alias gc='git commit --verbose'
-alias gf='git fetch'
-alias gfc='git clone'
-alias gfm='git pull'
-alias gg='git grep'
-alias ggi='git grep --ignore-case'
-alias gia='git add'
-alias gid='git diff --no-ext-diff --cached'
-alias gl='git log --topo-order --pretty=format:"${_git_log_medium_format}"'
-alias gls='git log --topo-order --stat --pretty=format:"${_git_log_medium_format}"'
-alias gm='git merge'
-alias gp='git push'
 
 # tty aliases
 if [[ "$TERM" == 'linux' ]]; then
@@ -444,3 +433,14 @@ ranger-cd-widget() {
 }
 zle     -N     ranger-cd-widget
 bindkey '\e^o' ranger-cd-widget
+
+encrypt() {
+        output=~/"${1}".$(date +%s).enc
+        gpg --encrypt --armor --output ${output} -r 0xC457E72EEC222C29 "${1}" && echo "${1} -> ${output}"
+}
+
+decrypt() {
+        output=$(echo "${1}" | rev | cut -c16- | rev)
+        gpg --decrypt --output ${output} "${1}" && echo "${1} -> ${output}"
+}
+
