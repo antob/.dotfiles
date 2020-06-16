@@ -60,6 +60,7 @@ plugins=(
     git
     docker
     docker-compose
+    heroku
 )
 
 # # Native plugins
@@ -179,7 +180,7 @@ export DOTNET_ROOT=$HOME/dotnet/2.2.0
 export PATH=$PATH:$HOME/dotnet/2.2.0
 
 # Bat theme
-BAT_THEME="ansi-dark"
+export BAT_THEME="ansi-dark"
 
 # Default command to run, if any
 eval "$RUN"

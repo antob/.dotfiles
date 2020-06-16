@@ -308,3 +308,4 @@ Mount shared folder
 ```bash
 vmhgfs-fuse .host:/Temp /mnt/share -o subtype=vmhgfs-fuse,allow_other
 ```
+
