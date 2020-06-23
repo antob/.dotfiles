@@ -69,13 +69,13 @@ export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # qt theme
-export QT_QPA_PLATFORMTHEME="qt5ct"
+#export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # GTK 3 theme
-export GTK_THEME=Adwaita:dark
-export GDK_SCALE=2
-export GDK_DPI_SCALE=0.5
+#export GTK_THEME=Adwaita:dark
+#export GDK_SCALE=2
+#export GDK_DPI_SCALE=0.5
 
 # firefox scroling
-export MOZ_USE_XINPUT2=1
+#export MOZ_USE_XINPUT2=1
 

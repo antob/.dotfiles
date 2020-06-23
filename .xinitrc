@@ -1,20 +1,24 @@
 #!/bin/sh
+#
+# ~/.xinitrc
+#
+# Executed by startx (run your window manager from here)
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
-# set dpi
-xrandr --dpi 128
+DEFAULT_SESSION=startkde
 
 # merge in defaults and keymaps
-if [ -f "$sysresources" ]; then
-    xrdb -merge "$sysresources"
+
+if [ -f $sysresources ]; then
+    xrdb -merge $sysresources
 fi
 
-if [ -f "$sysmodmap" ]; then
-    xmodmap "$sysmodmap"
+if [ -f $sysmodmap ]; then
+    xmodmap $sysmodmap
 fi
 
 if [ -f "$userresources" ]; then
@@ -25,43 +29,38 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
-if [ -d /etc/X11/xinit/xinitrc.d ]; then
+# start some nice programs
+
+if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
         [ -x "$f" ] && . "$f"
     done
     unset f
 fi
 
-if [ -f ~/.xprofile ]; then
-    . ~/.xprofile
-fi
+get_session(){
+    local dbus_args=(--sh-syntax --exit-with-session)
+    case $1 in
+        awesome) dbus_args+=(awesome) ;;
+        bspwm) dbus_args+=(bspwm-session) ;;
+        budgie) dbus_args+=(budgie-desktop) ;;
+        cinnamon) dbus_args+=(cinnamon-session) ;;
+        deepin) dbus_args+=(startdde) ;;
+        enlightenment) dbus_args+=(enlightenment_start) ;;
+        fluxbox) dbus_args+=(startfluxbox) ;;
+        gnome) dbus_args+=(gnome-session) ;;
+        i3|i3wm) dbus_args+=(i3 --shmlog-size 0) ;;
+        jwm) dbus_args+=(jwm) ;;
+        kde) dbus_args+=(startkde) ;;
+        lxde) dbus_args+=(startlxde) ;;
+        lxqt) dbus_args+=(lxqt-session) ;;
+        mate) dbus_args+=(mate-session) ;;
+        xfce) dbus_args+=(xfce4-session) ;;
+        openbox) dbus_args+=(openbox-session) ;;
+        *) dbus_args+=($DEFAULT_SESSION) ;;
+    esac
 
-# set color profile
-xcalib -d :0 ~/.local/share/color/NE140FHM_N61.icm
+    echo "dbus-launch ${dbus_args[*]}"
+}
 
-# select wm/de with: startx ~/.xinitrc session
-session=${1:-i3}
-
-# set keyboard repeat rate
-xset r rate 200 40
-
-# set dpi
-#xrandr --dpi 192
-
-# screen locker
-xset s off
-#xset s 300 120
-#xss-lock -n ~/.local/bin/dim-lights.sh -l -- ~/.local/bin/betterlockscreen -t 'Enter password to unlock.' -s &
-#xss-lock -n ~/.local/bin/dim-lights.sh -l -- ~/.local/bin/betterlockscreen --off 30 -l dimblur -t 'Enter password to unlock.' &
-
-# redshift
-redshift -c .config/redshift/redshift.conf &
-
-case "$session" in
-    i3)
-        exec i3 ;;
-    kitty)
-	exec kitty -o initial_window_width=1680 -o initial_window_height=1050 -o remember_window_size=no ;;
-    *)
-        exec "$session"
-esac
+exec $(get_session)
