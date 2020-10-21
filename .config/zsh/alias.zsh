@@ -63,6 +63,7 @@ alias gdb='gdb -q'
 alias mv='imv --pass-through -i'
 alias cp='icp --pass-through -i'
 alias cat='bat -p'
+alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 # git aliases
 alias gh='git hist'

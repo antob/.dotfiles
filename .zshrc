@@ -61,6 +61,7 @@ plugins=(
     docker
     docker-compose
     heroku
+    kubectl
 )
 
 # # Native plugins
@@ -181,6 +182,12 @@ export PATH=$PATH:$HOME/dotnet/2.2.0
 
 # Bat theme
 export BAT_THEME="ansi-dark"
+
+# kubectl
+export KUBECONFIG=$HOME/.kube/config
+
+# Bitwarden
+eval "$(bw completion --shell zsh); compdef _bw bw;"
 
 # Default command to run, if any
 eval "$RUN"
